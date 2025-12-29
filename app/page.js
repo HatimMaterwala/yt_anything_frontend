@@ -46,7 +46,7 @@ export default function Home() {
       setDownText(`Downloading ${Math.floor(progress)}%`)
     },500);
 
-    const res = await fetch("http://127.0.0.1:8000/download", {
+    const res = await fetch("https://ytanythingbackend-production.up.railway.app/download", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
