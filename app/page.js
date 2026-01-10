@@ -25,6 +25,8 @@ export default function Home() {
     }
   };
 
+  const realLink = findRealLink(ytLink);
+
   const handleSubmitButton = async () => {
     if (ytLink.length == 0) return;
 
@@ -145,12 +147,12 @@ export default function Home() {
           )}
         </div>
 
-        {showIframe && !isInvalid && (
+        {showIframe && !isInvalid && realLink && (
           <div className="w-full flex justify-center">
             <div className="relative w-full max-w-sm aspect-video rounded-2xl overflow-hidden">
               <iframe
                 src={`https://www.youtube.com/embed/${
-                  findRealLink(ytLink).split("v=")[1]
+                  realLink.split("v=")[1]
                 }`}
                 className="absolute inset-0 w-full h-full"
                 allowFullScreen
