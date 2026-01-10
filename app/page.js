@@ -14,9 +14,15 @@ export default function Home() {
   const [downText, setDownText] = useState("Download");
 
   const findRealLink = (ytLink) => {
-    const correctUrl = new URL(ytLink);
-    const videoId = correctUrl.searchParams.get("v");
-    return `https://www.youtube.com/watch?v=${videoId}`;
+    try {
+      if (!ytLink) return null;
+      const correctUrl = new URL(ytLink);
+      const videoId = correctUrl.searchParams.get("v");
+      if (!videoId) return null;
+      return `https://www.youtube.com/watch?v=${videoId}`;
+    } catch (error) {
+      return null;
+    }
   };
 
   const handleSubmitButton = async () => {
@@ -45,7 +51,7 @@ export default function Home() {
     }, 500);
 
     const res = await fetch(
-       "https://ytanythingbackend-production.up.railway.app/download",
+      "https://ytanythingbackend-production.up.railway.app/download",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -57,7 +63,7 @@ export default function Home() {
       alert("Download Failed - Video not Found");
       setLoading(false);
       setDownText("Download");
-      setIsDisabled(false)
+      setIsDisabled(false);
       clearInterval(interval);
       return;
     }
