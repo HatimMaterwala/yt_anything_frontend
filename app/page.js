@@ -224,7 +224,7 @@ export default function Home() {
     }, 500);
 
     const res = await fetch(
-       "http://127.0.0.1:8000/download",
+       "https://ytanythingbackend-production.up.railway.app/download",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
